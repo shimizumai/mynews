@@ -9,7 +9,7 @@ class NewsController extends Controller
 {
     public function add()
     {
-        return view('adimin.news.create');
+        return view('admin.news.create');
     }
 }
 //【応用】 artisanを使って、Admin/ProfileControllerを作成しましょう
