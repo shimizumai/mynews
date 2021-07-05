@@ -16,23 +16,16 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('news/create', 'Admin\NewsController@add');
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+    Route::get('profile/create','Admin\ProfileController@add')->middleware('auth');
+    Route::get('profile/edit','Admin\ProfileController@edit')->middleware('auth');
 });
 
 /*「http://XXXXXX.jp/XXX というアクセスが来たときに、
 AAAControllerのbbbというAction に渡すRoutingの設定」を書いてみてください*/
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('XXX',
-'AAAController@bbb');
-});
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('admin/profile/create',
-    'ProfileController@add');
-});
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('admin/profile/edit',
-    'ProfileController@adit');
-});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
