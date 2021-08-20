@@ -15,10 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
-    Route::get('profile/create','Admin\ProfileController@add')->middleware('auth');
-    Route::get('profile/edit','Admin\ProfileController@edit')->middleware('auth');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+     Route::get('news/create', 'Admin\NewsController@add');
+     Route::post('news/create', 'Admin\NewsController@create');
+     Route::get('profile/create', 'Admin\ProfileController@add');
+     Route::post('profile/create', 'Admin\ProfileController@create');# 追記
+     Route::post('profile/edit', 'Admin\ProfileController@update');
+    
 });
 
 /*「http://XXXXXX.jp/XXX というアクセスが来たときに、
@@ -29,3 +32,7 @@ AAAControllerのbbbというAction に渡すRoutingの設定」を書いてみ�
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('news/create', 'Admin\NewsController@create'); # 追記
+;
+
+     

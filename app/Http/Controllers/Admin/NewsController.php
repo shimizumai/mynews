@@ -11,5 +11,13 @@ class NewsController extends Controller
     {
         return view('admin.news.create');
     }
-}
+
 //【応用】 artisanを使って、Admin/ProfileControllerを作成しましょう
+
+ // 以下を追記
+  public function create(Request $request)
+  {
+      // admin/news/createにリダイレクトする
+      return redirect('admin/news/create');
+  }  
+}
